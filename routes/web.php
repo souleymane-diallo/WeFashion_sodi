@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FrontController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +16,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::controller(FrontController::class)->group(function () {
+    Route::get('/', 'index')->name('list.product');
+    Route::get('product/{id}', 'show')->where(['id' => '[0-9]+'])->name('show.product');
+    Route::get('sale', 'showProductBySale')->name('sale.product');
+    Route::get('man', 'showProductByMan')->name('man.product');
+    Route::get('woman', 'showProductByWoman')->name('woman.product');
 });
+
+Route::resource('admin', ProductController::class)->middleware('auth');
+Route::resource('categories', CategoryController::class)->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
