@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Size;
 
 class ProductController extends Controller
 {
@@ -13,9 +15,13 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $paginate = 15;
+
     public function index()
     {
-        //
+        $products = Product::latest()->with('category')->paginate($this->paginate);
+        // dd($products);
+        return view('back.index', compact('products'));
     }
 
     /**
@@ -25,7 +31,12 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+
+        $category = Category::pluck('name', 'id')->all();
+        //dd($category);
+        $sizes = Size::pluck('name', 'id')->all();
+        //dd($sizes);
+        return view('back.create', compact('category', 'sizes'));
     }
 
     /**
@@ -36,7 +47,22 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //
+        $product = Product::create($request->validated());
+        //$product->category()->associate($request->category);
+        $product->sizes()->attach($request->sizes);
+
+        $im = $request->file('picture');
+
+        if (!empty($im)) {
+            $link = $request->file('picture')->store('images');
+
+            $product->picture()->create([
+                'link' => $link,
+                'title' => $request->title_image ?? $request->title
+            ]);
+        }
+
+        return redirect()->route('admin.index')->with('message', 'Le produit a bien été créée !');
     }
 
     /**
