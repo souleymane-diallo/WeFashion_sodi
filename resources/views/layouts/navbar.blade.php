@@ -13,25 +13,33 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('sale.product')" :active="request()->routeIs('sale.product')">
-                        {{ __('Soldes') }}
+                        {{ __('SOLDES') }}
                     </x-nav-link>
                     <x-nav-link :href="route('man.product')" :active="request()->routeIs('man.product')">
-                        {{ __('Homme') }}
+                        {{ __('HOMME') }}
                     </x-nav-link>
                     <x-nav-link :href="route('woman.product')" :active="request()->routeIs('woman.product')">
-                        {{ __('Femme') }}
+                        {{ __('FEMME') }}
                     </x-nav-link>
                 </div>
                 <div>
                     @if (Route::has('login'))
                         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                             @auth
-                                <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                                <x-nav-link href="{{ url('/dashboard') }}">
+                                    {{ __('Dashboard') }}
+                                </x-nav-link>
+                                <!--<a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>-->
                             @else
-                                <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-
+                                <!--<a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>-->
+                                <x-nav-link href="{{ route('login') }}">
+                                    {{ __('Login') }}
+                                </x-nav-link>
                                 @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                                    <x-nav-link href="{{ route('register') }}">
+                                        {{ __('Register') }}
+                                    </x-nav-link>
+                                    <!--<a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>-->
                                 @endif
                             @endauth
                         </div>
@@ -54,17 +62,17 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('sale.product')" :active="request()->routeIs('sale.product')">
-                {{ __('Soldes') }}
+                {{ __('SOLDES') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('man.product')" :active="request()->routeIs('man.product')">
-                {{ __('Homme') }}
+                {{ __('HOMME') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('woman.product')" :active="request()->routeIs('woman.product')">
-                {{ __('Femme') }}
+                {{ __('FEMME') }}
             </x-responsive-nav-link>
         </div>
     </div>
