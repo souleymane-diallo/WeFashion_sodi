@@ -13,7 +13,7 @@ class FrontController extends Controller
     // return all products
     public function index()
     {
-        $products = Product::latest()->with('picture','category')->paginate($this->paginate);
+        $products = Product::published()->latest()->with('picture','category')->paginate($this->paginate);
 
         return view('front.index', compact('products'));
     }
