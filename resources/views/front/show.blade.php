@@ -21,9 +21,9 @@
                         </div>
                         <div>
                             <p>Prix : {{ $product->price }} €</p>
-                            <p>Reference : {{ $product->code }} </p>
-                            <p> {{ $product->state == 'sale' ? 'En Solde' : '' }} </p>
-                            <p> {{ $product->category->name }} </p>
+                            <p>Reference : {{ $product->reference }} </p>
+                            <p>Etat : {{ $product->state }} </p>
+                            <p>Category : {{ $product->category->name }} </p>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="sizes" class="block text-lg font-medium text-gray-700">Taille</label>
