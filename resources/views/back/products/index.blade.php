@@ -20,10 +20,10 @@
                     <tr>
                         <th class="text-left px-2 py-2 text-xs text-gray-500">#</th>
                         <th class="text-left px-2 py-2 text-xs text-gray-500">Nom</th>
-                        <th class="text-left px-2 py-2 text-xs text-gray-500">Catégorie</th>
                         <th class="text-left px-2 py-2 text-xs text-gray-500">Prix</th>
                         <th class="text-left px-2 py-2 text-xs text-gray-500">Etat</th>
-                        <th class="text-left px-2 py-2 text-xs text-gray-500 col-span-2">Action</th>
+                        <th class="text-left px-2 py-2 text-xs text-gray-500 col-span-2"></th>
+                        <th class="text-left px-2 py-2 text-xs text-gray-500 col-span-2"></th>
                     </tr>
                     </thead>
                     <tbody class="bg-white">
@@ -31,9 +31,8 @@
                         <tr class="whitespace-nowrap">
                             <td class="px-2 py-2">{{ $product->id }}</td>
                             <td class="px-2 py-2 text-sm text-gray-500">{{ $product->name }}</td>
-                            <td class="px-2 py-2">{{ $product->category->name }}</td>
                             <td class="px-2 py-2">{{ $product->price }}</td>
-                            <td class="px-2 py-2">{{ $product->visibility ? 'publier' :'non publier' }}</td>
+                            <td class="px-2 py-2">{{ $product->visibility }}</td>
                             <x-link-button href="{{ route('admin.products.edit', $product) }}">
                                 @lang('edit')
                             </x-link-button>

@@ -21,6 +21,11 @@ class ProductController extends Controller
     {
         $products = Product::latest()->with('category')->paginate($this->paginate);
         // dd($products);
+        return view('back.products.index', compact('products'));
+    }
+    public function dashboard()
+    {
+        $products = Product::latest()->with('category')->paginate($this->paginate);
         return view('back.index', compact('products'));
     }
 
@@ -36,7 +41,7 @@ class ProductController extends Controller
         //dd($category);
         $sizes = Size::pluck('name', 'id')->all();
         //dd($sizes);
-        return view('back.create', compact('category', 'sizes'));
+        return view('back.products.create', compact('category', 'sizes'));
     }
 
     /**
@@ -48,7 +53,6 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $product = Product::create($request->validated());
-        //$product->category()->associate($request->category);
         $product->sizes()->attach($request->sizes);
 
         $im = $request->file('picture');
@@ -62,7 +66,7 @@ class ProductController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.index')->with('message', 'Le produit a bien été créée !');
+        return redirect()->route('admin.products.index')->with('message', 'Le produit a bien été créée !');
     }
 
     /**
@@ -84,7 +88,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $category = Category::pluck('name', 'id')->all();
+        $sizes = Size::pluck('name', 'id')->all();
+        return view('back.products.create', compact('product', 'category', 'sizes'));
     }
 
     /**

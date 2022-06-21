@@ -30,8 +30,8 @@ class StoreProductRequest extends FormRequest
             'sizes.*' => ['bail','integer'],
             'category_id' => ['bail','integer'],
             'title_image' => 'string|nullable',
-            'state' => ['bail','required'],
-            'visibility' => ['bail', 'boolean'],
+            'state' => ['bail','in:sale,standard'],
+            'visibility' => ['bail','in:published,unpublished'],
             'picture' => ['image', 'max:3000'],
             'reference' => ['bail','required', 'string', 'max:16']
         ];

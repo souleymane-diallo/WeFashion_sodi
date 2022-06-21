@@ -21,7 +21,7 @@ class ProductFactory extends Factory
             'name' => $this->faker->sentence(),
             'description' => $this->faker->paragraph(3),
             'state' => $this->faker->randomElement(['sale','standard']),
-            'visibility' => $this->faker->boolean(),
+            'visibility' => $this->faker->randomElement(['published','unpublished']),
             'price' => $this->faker->randomFloat(2, 10,2000),
             'reference' => Str::random(16),
         ];
