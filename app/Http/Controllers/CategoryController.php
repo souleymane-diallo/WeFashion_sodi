@@ -15,7 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::latest()->get();
+        // dd($products);
+        return view('back.categories.index', compact('categories'));
     }
 
     /**
@@ -25,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return  view('back.categories.create');
     }
 
     /**
@@ -36,7 +38,8 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        Category::create($request->validated());
+        return back()->with('message', "La Categorie a bien été créée !");
     }
 
     /**
@@ -58,7 +61,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('back.categories.create', compact('category'));
     }
 
     /**
@@ -70,7 +73,8 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $category->update($request->validated());
+        return back()->with('message', "La Categorie a bien été Modifiée !");
     }
 
     /**
@@ -81,6 +85,6 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
     }
 }

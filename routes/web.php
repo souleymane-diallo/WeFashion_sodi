@@ -24,8 +24,11 @@ Route::controller(FrontController::class)->group(function () {
     Route::get('woman', 'showProductByWoman')->name('woman.product');
 });
 
-Route::resource('admin', ProductController::class)->middleware('auth');
-Route::resource('categories', CategoryController::class)->middleware('auth');
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
+    Route::get('/', [ProductController::class, 'dashboard'])->name('dashboard');
+    Route::resource('/products', ProductController::class);
+    Route::resource('/categories', CategoryController::class);
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
