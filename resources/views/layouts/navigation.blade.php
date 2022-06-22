@@ -1,11 +1,11 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
+        <div class="flex justify-between h-16 relative">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="#" style="color: #66EB9A">
+                    <a href="#" style="color: #66EB9A" class="font-sans text-lg font-bold">
                         WE FASHION
                     </a>
                 </div>
@@ -20,10 +20,13 @@
                     </x-nav-link>
                 </div>
             </div>
-            <div class="my-2 flex items-center justify-end">
-                <x-link-button href="/">
-                    {{  __('Retour') }}
-                </x-link-button>
+            <div class="my-2 absolute top-2 right-40">
+                <x-nav-link href="/">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" class="pr-2">
+                        <path fill="none" d="M0 0h24v24H0z"/><path d="M6 19h12V9.157l-6-5.454-6 5.454V19zm13 2H5a1 1 0 0 1-1-1v-9H1l10.327-9.388a1 1 0 0 1 1.346 0L23 11h-3v9a1 1 0 0 1-1 1zM7.5 13h2a2.5 2.5 0 1 0 5 0h2a4.5 4.5 0 1 1-9 0z"/>
+                    </svg>
+                    Home
+                </x-nav-link>
             </div>
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
