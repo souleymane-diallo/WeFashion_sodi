@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="/" style="color: #66EB9A">
+                    <a href="/" style="color: #66EB9A" class="font-sans text-lg font-bold">
                         WE FASHION
                     </a>
                 </div>
@@ -26,7 +26,7 @@
                     @if (Route::has('login'))
                         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                             @auth
-                                <x-nav-link href="{{ url('/dashboard') }}">
+                                <x-nav-link href="{{ url('/admin') }}">
                                     {{ __('Dashboard') }}
                                 </x-nav-link>
                                 <!--<a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>-->
