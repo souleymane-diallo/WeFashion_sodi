@@ -33,4 +33,9 @@ class Product extends Model
     {
         return $this->belongsToMany(Size::class);
     }
+
+    public function scopePublished($query)
+    {
+        return $query->where('visibility', 'published');
+    }
 }

@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Size;
 
 class ProductController extends Controller
@@ -62,7 +63,7 @@ class ProductController extends Controller
 
             $product->picture()->create([
                 'link' => $link,
-                'title' => $request->title_image ?? $request->title
+                'title' => $title_image ??''
             ]);
         }
 
@@ -88,9 +89,15 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+
         $category = Category::pluck('name', 'id')->all();
         $sizes = Size::pluck('name', 'id')->all();
-        return view('back.products.create', compact('product', 'category', 'sizes'));
+        $productSizes = [];
+        foreach ($product->sizes as $productSize) {
+            $productSizes[] = $productSize->id;
+        }
+
+        return view('back.products.create', compact('product', 'category', 'sizes', 'productSizes'));
     }
 
     /**
@@ -102,7 +109,30 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        //dd('toto', $product->sizes, $request);
+
+        $product->update($request->validated());
+
+        $product->sizes()->sync($request->sizes);
+
+        $im = $request->file('picture');
+
+        if (!empty($im)) {
+
+            $link = $request->file('picture')->store('images');
+
+            if (($product->picture)) {
+                Storage::disk('local')->delete($product->picture->link);
+                $product->picture()->delete();
+            }
+
+            $product->picture()->create([
+                'link' => $link,
+                'title' => title_image?? ''
+            ]);
+        }
+
+        return redirect()->route('admin.products.index')->with('message', 'Le Produit a bien été modifier');
     }
 
     /**
@@ -113,6 +143,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        // delete l'image du storage
+        Storage::disk('local')->delete($product->picture);
+
+        $product->delete();
+        return redirect()->route('admin.products.index')->with('message', 'Le produit a bien été supprimer avec succes');
     }
 }
