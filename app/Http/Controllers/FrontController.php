@@ -26,7 +26,7 @@ class FrontController extends Controller
 
     public function showProductBySale()
     {
-        $products = Product::with('picture')->where('state', 'sale')->paginate($this->paginate);
+        $products = Product::published()->with('picture')->where('state', 'sale')->paginate($this->paginate);
         // dd($products);
         // $sales = Product::where('state', 'sale')->get();
         return view('front.sale', compact('products'));
@@ -34,14 +34,14 @@ class FrontController extends Controller
 
     public function showProductByMan()
     {
-        $products = Product::with('category', 'picture')->where('category_id', 1)->paginate($this->paginate);
+        $products = Product::published()->with('category', 'picture')->where('category_id', 1)->paginate($this->paginate);
         // dd($products);
         return view('front.man', compact('products'));
     }
 
     public function showProductByWoman()
     {
-        $products = Product::with('category', 'picture')->where('category_id', 2)->paginate($this->paginate);
+        $products = Product::published()->with('category', 'picture')->where('category_id', 2)->paginate($this->paginate);
         // dd($products);
         return view('front.woman', compact('products'));
     }
