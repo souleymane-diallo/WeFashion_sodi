@@ -85,6 +85,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+
         $category->delete();
+        return redirect()->route('admin.categories.index')->with('message', 'La Categorie a bien été créée !');
     }
 }

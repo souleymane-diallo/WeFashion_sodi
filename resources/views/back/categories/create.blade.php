@@ -21,11 +21,11 @@
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
         <!-- Message de réussite -->
         @if (session()->has('message'))
-            <div class="mt-3 mb-4 list-disc list-inside text-sm text-green-600">
+            <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
                 {{ session('message') }}
             </div>
-
         @endif
+
         @if(isset($category))
             <form action="{{ route('admin.categories.update', $category) }}" method="post" enctype="multipart/form-data">
                 @method('PUT')
