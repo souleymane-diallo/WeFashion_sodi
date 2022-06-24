@@ -12,9 +12,7 @@
     <x-form-card>
         <div class="my-2 flex items-center justify-end">
             <x-link-button href="/admin">
-                <x-button class="ml-3">
-                    {{  __('Retour') }}
-                </x-button>
+                {{  __('Retour') }}
             </x-link-button>
         </div>
         <!-- Erreurs de validation -->
