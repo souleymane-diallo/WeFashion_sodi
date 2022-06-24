@@ -57,7 +57,7 @@ class ProductSeeder extends Seeder
             $link = Str::random(12). '.jpg';
 
             $file = file_get_contents(public_path('image_source/' . $folder . '/' . rand(1, 10) . '.jpg'));
-            Storage::disk('local')->put($link, $file);
+            Storage::disk('local')->put('images/'.$link, $file);
 
             $product->picture()->create([
                 'title' => 'Default', // valeur par défaut

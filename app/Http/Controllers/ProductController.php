@@ -21,7 +21,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::latest()->with('category')->paginate($this->paginate);
-        // dd($products);
+
         return view('back.products.index', compact('products'));
     }
     public function dashboard()
@@ -55,15 +55,17 @@ class ProductController extends Controller
     {
         $product = Product::create($request->validated());
         $product->sizes()->attach($request->sizes);
-
         $im = $request->file('picture');
 
         if (!empty($im)) {
-            $link = $request->file('picture')->store('images');
+            //$link = Storage::disk('local')->put('images', $im);
+            $request->file('picture')->store('images');
+            $link = $request->file('picture')->hashName();
 
+            //dd($request->title_image);
             $product->picture()->create([
                 'link' => $link,
-                'title' => $title_image ??''
+                'title' => $request->title_image?? 'Default',
             ]);
         }
 
@@ -109,7 +111,6 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //dd('toto', $product->sizes, $request);
 
         $product->update($request->validated());
 
@@ -119,7 +120,8 @@ class ProductController extends Controller
 
         if (!empty($im)) {
 
-            $link = $request->file('picture')->store('images');
+            $request->file('picture')->store('images');
+            $link = $request->file('picture')->hashName();
 
             if (($product->picture)) {
                 Storage::disk('local')->delete($product->picture->link);
@@ -128,7 +130,7 @@ class ProductController extends Controller
 
             $product->picture()->create([
                 'link' => $link,
-                'title' => title_image?? ''
+                'title' => $request->title_image?? 'Default'
             ]);
         }
 
@@ -144,7 +146,9 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         // delete l'image du storage
-        Storage::disk('local')->delete($product->picture);
+        if($product->picture) {
+            Storage::disk('local')->delete($product->picture->link);
+        }
 
         $product->delete();
         return redirect()->route('admin.products.index')->with('message', 'Le produit a bien été supprimer avec succes');

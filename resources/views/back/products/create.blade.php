@@ -12,7 +12,7 @@
     <x-form-card>
         <div class="my-2 flex items-center justify-end">
             <x-link-button href="/admin">
-                {{  __('Retour') }}
+                {{  __('Retour au dashboard') }}
             </x-link-button>
         </div>
         <!-- Erreurs de validation -->
@@ -48,7 +48,7 @@
                     </div>
                     <div>
                         <x-label for="reference" :value="__('Reférence')" />
-                        <x-input id="reference" class="block mt-1 w-full" type="text" name="reference" :value="old('reference',($product->reference)?? '')" required />
+                        <x-input id="reference" class="block mt-1 w-full" maxlength="16" type="text" name="reference" :value="old('reference',($product->reference)?? '')" required />
                     </div>
                 </div>
 
@@ -74,7 +74,7 @@
                                         name="sizes[]"  type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
                                     </div>
                                     <div class="ml-3 text-sm">
-                                        <label for="author{{$id}}" class="font-medium text-gray-700">{{$name}}</label>
+                                        <label for="size{{$id}}" class="font-medium text-gray-700">{{$name}}</label>
                                     </div>
                                 </div>
                             @endforeach
@@ -112,7 +112,7 @@
                     </div>
                     <div>
                         <x-label for="picture" :value="__('Ajouter l\'image')" />
-                        <x-input id="piture" class="block mt-1 w-full" type="file" name="picture" />
+                        <x-input id="picture" class="block mt-1 w-full" type="file" name="picture" :value="old('picture', ($product->picture->link)?? '')" />
                     </div>
                 </div>
 
