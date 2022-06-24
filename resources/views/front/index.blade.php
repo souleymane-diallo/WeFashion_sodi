@@ -1,8 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Liste de tous les Produits') }}
+        <h2 class="font-semibold text-2xl text-gray-800 leading-tight uppercase">
+            {{ __('Bienvenue à WeFashion') }}
         </h2>
+        <p class="text-gray-600 text-lg font-medium">La liste de tous les produits possible faites vous plaisir 😎😎</p>
     </x-slot>
 
     <div class="py-10">
@@ -21,11 +22,11 @@
                                     <span class="absolute top-0 right-0 bg-green-500 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded text-white">En Solde</span>
                                 @endif
                                 <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                                    <img height="" src="{{ asset('images/'. $product->picture->link) }}" alt="{{$product->picture->title}}" class="rounded-t-lg">
+                                    <img height="" src="{{ asset('images/'. $product->picture->link?? '-') }}" alt="{{$product->picture->title}}" class="rounded-t-lg">
                                 </div>
                                 <div class="p-3 bg-white">
-                                    <h3 class="mt-4 text-lg font-bold text-gray-700">{{ $product->name }}</h3>
-                                    <p class="mt-1 text-lg font-medium text-gray-900">{{ $product->price }} €</p>
+                                    <h3 class="mt-4 text-lg font-bold text-gray-700">{{ $product->name?? '-' }}</h3>
+                                    <p class="mt-1 text-lg font-medium text-gray-900">{{ $product->price?? '-' }} €</p>
                                 </div>
                             </a>
                         @endforeach

@@ -12,8 +12,8 @@
                 </x-link-button>
             </div>
             @if (session()->has('message'))
-                <div class="mt-3 mb-4 list-disc list-inside text-sm text-green-600 p-2">
-                    <span class="text-white text-lg font-bold">{{ session('message') }}</span>
+                <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+                    {{ session('message') }}
                 </div>
             @endif
 

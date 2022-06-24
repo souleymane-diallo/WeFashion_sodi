@@ -16,8 +16,8 @@
                 </x-link-button>
             </div>
             @if (session()->has('message'))
-                <div class="mt-3 mb-4 list-disc list-inside text-sm text-green-600 p-2">
-                    <span class="text-white text-lg font-bold">{{ session('message') }}</span>
+                <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+                    {{ session('message') }}
                 </div>
             @endif
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg my-3">
@@ -36,9 +36,9 @@
                     @foreach ($products as $product)
                         <tr class="whitespace-nowrap">
                             <td class="px-2 py-2">{{ $product->id }}</td>
-                            <td class="px-2 py-2 text-sm text-gray-500">{{ $product->name }}</td>
-                            <td class="px-2 py-2">{{ $product->category->name }}</td>
-                            <td class="px-2 py-2">{{ $product->price }}</td>
+                            <td class="px-2 py-2 text-md font-semibold text-gray-500">{{ $product->name?? '-' }}</td>
+                            <td class="px-2 py-2">{{ $product->category->name?? '-' }}</td>
+                            <td class="px-2 py-2">{{ $product->price?? '-' }} €</td>
                             <td class="px-2 py-2 text-bold {{ $product->visibility =='published' ? 'text-green-800' : 'text-red-800' }}" >{{ $product->visibility == 'published' ? 'Publier' : 'Dépublier' }}</td>
                             <td  class="px-2 py-2 text-sm text-gray-500">
                                 <a href="{{ route('admin.products.edit', $product) }}">
@@ -49,7 +49,7 @@
                                 <form id="destroy" action="{{ route('admin.products.destroy', $product->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" onclick="return confirm('Voulez-vous supprimer Cette categories ?');">
+                                    <button type="submit" onclick="return confirm('Voulez-vous supprimer Ce Produit ?');">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto text-red-600 hover:text-red-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                         </svg>
@@ -63,7 +63,7 @@
                 </table>
             </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-1">
-                {{$products->links()}}
+                {{ $products->links() }}
             </div>
         </div>
     </div>
