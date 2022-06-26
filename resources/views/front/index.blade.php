@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-2xl text-gray-800 leading-tight uppercase">
-            {{ __('Bienvenue à WeFashion') }}
+        <h2 class="font-semibold text-2xl text-gray-800 leading-loose uppercase">
+            {{ __('Bienvenue à WeFashion la Boutique pour Hommes et Femmes') }}
         </h2>
         <p class="text-gray-600 text-lg font-medium">La liste de tous les produits possible faites vous plaisir 😎😎</p>
     </x-slot>
@@ -14,7 +14,7 @@
 
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg my-3">
                 <div class="p-6 bg-white border-b border-gray-200 group relative">
-                    <span class="bg-white shadow-sm absolute border-b top-0 right-5 p-2 overflow-hidden">{{ $products->total() }} résultats</span>
+                    <span class="absolute border-b top-0 right-5 p-2 bg-blue-100 text-blue-800 text-lg font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">{{ $products->total() }} résultats</span>
                     <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-3 bg-white">
                         @foreach ($products as $product )
                             <a href="{{url('product', $product->id) }}" class="group relative max-w-sm bg-white rounded-lg shadow-md">
