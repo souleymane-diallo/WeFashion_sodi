@@ -1,7 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            @lang('Dashboard pour les Categories')
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight leading-relaxed text-center">
+            La partie dashboard réserver à la création, <br />
+            modification et suppression d'une Categories par l'administrateur
         </h2>
     </x-slot>
     <div class="py-10">
@@ -23,12 +24,12 @@
                     <tr>
                         <th class="text-left px-2 py-2 text-lg text-gray-500">#</th>
                         <th class="text-left px-2 py-2 text-lg text-gray-500">Nom Catégorie</th>
-                        <th class="text-left px-2 py-2 text-lg text-gray-500" colspan="2">Action</th>
+                        <th class="text-left px-2 py-2 text-lg text-gray-500" colspan="2">Actions</th>
                     </tr>
                     </thead>
                     <tbody class="bg-white">
                     @foreach ($categories as $category)
-                        <tr class="whitespace-nowrap">
+                        <tr class="whitespace-nowrap border-b even:bg-gray-50">
                             <td class="px-2 py-2">{{ $category->id }}</td>
                             <td class="px-2 py-2 text-sm text-gray-500">{{ $category->name }}</td>
                             <td  class="px-2 py-2 text-sm text-gray-500">

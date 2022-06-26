@@ -28,12 +28,12 @@
                         <th class="text-left px-2 py-2 text-lg text-gray-500">Nom</th>
                         <th class="text-left px-2 py-2 text-lg text-gray-500">Prix</th>
                         <th class="text-left px-2 py-2 text-lg text-gray-500">Etat</th>
-                        <th class="text-left px-2 py-2 text-lg text-gray-500" colspan="2">Action</th>
+                        <th class="text-left px-2 py-2 text-lg text-gray-500" colspan="2">Actions</th>
                     </tr>
                     </thead>
-                    <tbody class="bg-white">
+                    <tbody>
                     @foreach ($products as $product)
-                        <tr class="whitespace-nowrap">
+                        <tr class="whitespace-nowrap bg-white border-b even:bg-gray-50">
                             <td class="px-2 py-2">{{ $product->id }}</td>
                             <td class="px-2 py-2 text-lg font-semibold text-gray-500">{{ $product->name }}</td>
                             <td class="px-2 py-2">{{ $product->price }} €</td>
