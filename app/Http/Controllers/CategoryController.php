@@ -16,7 +16,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::latest()->get();
-        // dd($products);
+
         return view('back.categories.index', compact('categories'));
     }
 

@@ -39,9 +39,9 @@ class ProductController extends Controller
     {
 
         $category = Category::pluck('name', 'id')->all();
-        //dd($category);
+
         $sizes = Size::pluck('name', 'id')->all();
-        //dd($sizes);
+
         return view('back.products.create', compact('category', 'sizes'));
     }
 
@@ -58,11 +58,10 @@ class ProductController extends Controller
         $im = $request->file('picture');
 
         if (!empty($im)) {
-            //$link = Storage::disk('local')->put('images', $im);
+
             $request->file('picture')->store('images');
             $link = $request->file('picture')->hashName();
 
-            //dd($request->title_image);
             $product->picture()->create([
                 'link' => $link,
                 'title' => $request->title_image?? 'Default',
