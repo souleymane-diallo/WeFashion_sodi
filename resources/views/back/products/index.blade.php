@@ -37,7 +37,11 @@
                             <td class="px-2 py-2">{{ $product->id }}</td>
                             <td class="px-2 py-2 text-lg font-semibold text-gray-500">{{ $product->name }}</td>
                             <td class="px-2 py-2">{{ $product->price }} €</td>
-                            <td class="px-2 py-2 text-bold {{ $product->visibility =='published' ? 'text-green-800' : 'text-red-800' }}" >{{ $product->visibility == 'published' ? 'Publier' : 'Dépublier' }}</td>
+                            <td class="px-2 py-2 text-bold" >
+                                <span class="text-xs font-semibold mr-2 px-2.5 py-0.5 rounded {{ $product->visibility =='published' ? 'bg-green-100 text-green-800 dark:bg-green-200 dark:text-green-900' : 'bg-red-100 text-red-800 dark:bg-red-200 dark:text-red-900' }}">
+                                    {{ $product->visibility == 'published' ? 'Publier' : 'Dépublier' }}
+                                </span>
+                            </td>
                             <td  class="px-2 py-2 text-sm text-gray-500">
                                 <a href="{{ route('admin.products.edit', $product) }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M7.243 18H3v-4.243L14.435 2.322a1 1 0 0 1 1.414 0l2.829 2.829a1 1 0 0 1 0 1.414L7.243 18zM3 20h18v2H3v-2z"/></svg>
