@@ -127,7 +127,7 @@
 
                 <div class="flex items-center justify-end mt-4">
                     <x-button class="ml-3">
-                        {{ !isset($product) ? __('Créér') : __('Modifier') }}
+                        {{ !isset($product) ? __('Enregistrer') : __('Modifier') }}
                     </x-button>
                 </div>
             </form>
