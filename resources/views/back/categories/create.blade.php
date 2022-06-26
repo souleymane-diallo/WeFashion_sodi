@@ -11,8 +11,8 @@
 
     <x-form-card>
         <div class="my-2 flex items-center justify-end">
-            <x-link-button href="/admin">
-                {{  __('Retour') }}
+            <x-link-button href="/admin/categories">
+                {{  __('Retour dashboard') }}
             </x-link-button>
         </div>
         <!-- Erreurs de validation -->

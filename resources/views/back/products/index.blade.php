@@ -12,7 +12,7 @@
             </div>
             <div class="my-2 flex items-center justify-end">
                 <x-link-button href="{{route('admin.products.create')}}">
-                    Créer un Nouveau
+                    Nouveau
                 </x-link-button>
             </div>
             @if (session()->has('message'))

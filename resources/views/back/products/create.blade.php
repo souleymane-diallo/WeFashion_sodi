@@ -11,7 +11,7 @@
 
     <x-form-card>
         <div class="my-2 flex items-center justify-end">
-            <x-link-button href="/admin">
+            <x-link-button href="/admin/products">
                 {{  __('Retour au dashboard') }}
             </x-link-button>
         </div>
