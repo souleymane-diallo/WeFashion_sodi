@@ -19,9 +19,9 @@ pour génerer les dossiers vendor et node_modules
 
 
 ## And run the initial migrations and seeders.
-php artisan migrate:fresh --seed
-php artisan serve
-npm run watch
+    php artisan migrate:fresh --seed
+    php artisan serve
+    npm run watch
 
 ## Connexion on dashboard
     Edouard est l'administrateur du site
